@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="50sp"
+            android:id="@+id/label_login"
+            android:layout_marginTop="20sp"/>
+
+        <TextView
+            android:id="@+id/label_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="25sp"
+            android:layout_marginTop="20sp"
+            android:layout_below="@id/label_login"/>
+
+        <EditText
+            android:id="@+id/edit_email"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="20sp"
+            android:layout_marginLeft="20sp"
+            android:hint="Enter your email here"
+            android:layout_below="@id/label_email"/>
+
+        <TextView
+            android:id="@+id/label_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="Password"
+            android:layout_marginTop="20sp"
+            android:layout_below="@id/edit_email"/>
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:layout_marginLeft="20sp"
+            android:hint="Enter password here"
+            android:inputType="textPassword"
+            android:layout_below="@id/label_password"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:layout_below="@id/edit_password"
+            android:id="@+id/radio_group">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/choice_recycler"
+                android:text="Recycler"
+                android:layout_marginTop="10sp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/choice_user"
+                android:text="User"
+                android:layout_marginTop="10sp"/>
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_login"
+            android:layout_marginTop="25sp"
+            android:text="Login"
+            android:textColor="@color/colorPrimary"
+            android:layout_below="@id/radio_group"
+            android:layout_marginStart="50sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_login">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_new_user"
+                android:text="New user?"
+                android:layout_marginTop="20sp"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:id="@+id/click_new_user"
+                android:textColor="#0000FF"
+                android:text="@string/register_link"
+                android:clickable="true"
+                android:onClick="click"
+                android:textSize="15sp"
+                android:layout_marginLeft="10sp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+</android.support.constraint.ConstraintLayout>

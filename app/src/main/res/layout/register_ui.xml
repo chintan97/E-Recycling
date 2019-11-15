@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200sp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="50sp"
+                android:id="@+id/label_register"
+                android:layout_marginTop="20sp"/>
+
+            <TextView
+                android:id="@+id/label_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="25sp"
+                android:layout_marginTop="20sp"
+                android:layout_below="@id/label_register"/>
+
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="20sp"
+                android:hint="Enter your name here"
+                android:layout_below="@id/label_name"/>
+
+            <TextView
+                android:id="@+id/label_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="25sp"
+                android:layout_marginTop="20sp"
+                android:layout_below="@id/edit_name"/>
+
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="20sp"
+                android:hint="Enter your email here"
+                android:layout_below="@id/label_email"/>
+
+            <TextView
+                android:id="@+id/label_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone number"
+                android:textSize="25sp"
+                android:layout_marginTop="20sp"
+                android:layout_below="@id/edit_email"/>
+
+            <EditText
+                android:id="@+id/edit_phone"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="20sp"
+                android:hint="Enter your phone number here"
+                android:layout_below="@id/label_phone"/>
+
+            <TextView
+                android:id="@+id/label_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:text="Password"
+                android:layout_marginTop="20sp"
+                android:layout_below="@id/edit_phone"/>
+
+            <EditText
+                android:id="@+id/edit_password"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="20sp"
+                android:hint="Enter password here"
+                android:inputType="textPassword"
+                android:layout_below="@id/label_password"/>
+
+            <TextView
+                android:id="@+id/label_confirm_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:text="Confirm Password"
+                android:layout_marginTop="20sp"
+                android:layout_below="@id/edit_password"/>
+
+            <EditText
+                android:id="@+id/edit_confirm_password"
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="20sp"
+                android:hint="Re-Enter password here"
+                android:inputType="textPassword"
+                android:layout_below="@id/label_confirm_password"/>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_below="@id/edit_confirm_password"
+                android:id="@+id/radio_group">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/choice_recycler"
+                    android:text="Recycler"
+                    android:layout_marginTop="10sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/choice_user"
+                    android:text="User"
+                    android:layout_marginTop="10sp"/>
+
+            </RadioGroup>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_register"
+                android:layout_marginTop="25sp"
+                android:text="Register"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@id/radio_group"
+                android:layout_marginStart="50sp"/>
+        </RelativeLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
