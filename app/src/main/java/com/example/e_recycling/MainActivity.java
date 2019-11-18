@@ -13,6 +13,8 @@ import android.util.Patterns;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.facebook.stetho.Stetho;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.internal.NavigationMenu;
 
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //DB debugging tool// chrome://inspect/#devices
+        Stetho.initializeWithDefaults(this);
 
         mTextMessage = (TextView) findViewById(R.id.app_name);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);

@@ -1,6 +1,9 @@
 package com.example.e_recycling;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -17,12 +20,19 @@ public class LoginUIActivity extends MainActivity {
     EditText edit_email, edit_password;
     RadioGroup radioGroup;
 
+    private SQLiteDatabase db;
+    private SQLiteOpenHelper openHelper;
+    private Cursor cursor;
+
     String str_email = "", str_password = "", str_mode = ""; // mode --> U = user, R = recycler
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_ui);
+
+        openHelper = new DatabaseHelper(this);
+        db = openHelper.getReadableDatabase();
 
         prepareViews();
         initializeViews();
@@ -93,10 +103,20 @@ public class LoginUIActivity extends MainActivity {
             return;
         }
 
-        Intent intent = new Intent(getApplicationContext(), SlideMenuActivity.class);
-        intent.putExtra("email",str_email);
-        intent.putExtra("userType",str_mode);
-        startActivity(intent);
-        finish();
+        cursor = db.rawQuery("SELECT *FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.COL_4 + "=? AND " + DatabaseHelper.COL_5 + "=?", new String[]{str_email, str_password});
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+
+                Intent intent = new Intent(getApplicationContext(), SlideMenuActivity.class);
+                intent.putExtra("email",str_email);
+                intent.putExtra("userType",str_mode);
+                startActivity(intent);
+                finish();
+                Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Login error. Username or password not matched.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
