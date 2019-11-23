@@ -1,6 +1,7 @@
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.e_recycling.R;
+import com.example.e_recycling.SlideMenuActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,7 +80,7 @@ public class UserPostsFragment extends FragmentMaster {
         }
 
         @Override
-        public MainCategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public MainCategoryViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_users_posts, parent, false);
             MainCategoryViewHolder pvh = new MainCategoryViewHolder(view);
