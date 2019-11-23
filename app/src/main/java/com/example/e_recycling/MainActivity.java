@@ -8,9 +8,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.stetho.Stetho;
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_PERMISSION = 200;
 
     private TextView mTextMessage;
+    private ImageView logoImage;
 
     protected boolean hasNetwork() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -78,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        logoImage = (ImageView) findViewById(R.id.imageLogo);
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(400,400);
     }
 
 }

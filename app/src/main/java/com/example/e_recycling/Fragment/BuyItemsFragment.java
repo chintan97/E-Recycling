@@ -19,7 +19,7 @@ public class BuyItemsFragment extends FragmentMaster {
     int images[] = {R.drawable.moto, R.drawable.iphone, R.drawable.samsung};
     String descriptions[] = {"Moto G7", "Iphone", "Samsung"};
     String quantity[] = {"2", "1", "5"};
-    String location[] = {"Ahmedabad", "Ahmedabad", "Ahmedabad"};
+    String location[] = {"Halifax", "Halifax", "Halifax"};
     String maxBids[] = {"4","5","3"};
 
     RecyclerView recyclerView;

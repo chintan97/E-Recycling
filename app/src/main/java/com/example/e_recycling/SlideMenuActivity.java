@@ -116,12 +116,15 @@ public class SlideMenuActivity extends MainActivity
         if (strMenu.equals("My Post")) {
             setFragment(new UserPostsFragment());
         } else if (strMenu.equals("My Profile")) {
+            setFragment(new ProfileFragment());
         } else if (strMenu.equals("Add Post")) {
             setFragment(new AddPostFragment());
         } else if (strMenu.equals("Bidded Items")) {
+            setFragment(new BiddedItemsFragment());
         } else if (strMenu.equals("Buy Items")) {
             setFragment(new BuyItemsFragment());
         } else if (strMenu.equals("My Bids")) {
+            setFragment(new RecyclerBidFragment());
         } else if (strMenu.equals("Contact us")) {
             setFragment(new ContactUsFragment());
         } else if (strMenu.equals("Logout")) {
