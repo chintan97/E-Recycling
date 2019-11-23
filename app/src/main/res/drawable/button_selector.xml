@@ -2,7 +2,7 @@
     <!-- disable state. -->
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
-            <corners android:radius="8sp"/>
+            <corners android:radius="@dimen/_8sdp"/>
             <solid android:color="#2053c4f7"/>
         </shape>
     </item>
@@ -10,7 +10,7 @@
     <!--released state. -->
     <item android:state_pressed="false">
         <shape android:shape="rectangle">
-            <corners android:radius="8sp"/>
+            <corners android:radius="@dimen/_8sdp"/>
             <solid android:color="#53c4f7"/>
         </shape>
     </item>
@@ -18,7 +18,7 @@
     <!--pressed state. -->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <corners android:radius="8sp"/>
+            <corners android:radius="@dimen/_8sdp"/>
             <solid android:color="#8053c4f7"/>
         </shape>
     </item>

@@ -16,6 +16,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import com.example.e_recycling.Fragment.*;
 
 public class SlideMenuActivity extends MainActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,7 +30,7 @@ public class SlideMenuActivity extends MainActivity
     TextView text_email;
     String userType = "", str_name = "";
 
-    String[] userMenu = {"My Post", "My Profile", "Add Post", "Bidded items", "Contact us", "Logout"};
+    String[] userMenu = {"My Post", "My Profile", "Add Post", "Bidded Items", "Contact us", "Logout"};
     String[] recyclerMenu = {"Buy Items", "My Profile", "My Bids", "Contact us", "Logout"};
 
     @Override
@@ -82,6 +85,15 @@ public class SlideMenuActivity extends MainActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    public void setFragment(Fragment fragment) {
+        if (fragment != null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame, fragment);
+            fragmentTransaction.commit();
+        } else {
+        }
+    }
+
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -102,12 +114,16 @@ public class SlideMenuActivity extends MainActivity
         Log.d("Menu", strMenu);
 
         if (strMenu.equals("My Post")) {
+            setFragment(new UserPostsFragment());
         } else if (strMenu.equals("My Profile")) {
         } else if (strMenu.equals("Add Post")) {
-        } else if (strMenu.equals("Bidded items")) {
-        } else if (strMenu.equals("Buy items")) {
-        } else if (strMenu.equals("My bids")) {
+            setFragment(new AddPostFragment());
+        } else if (strMenu.equals("Bidded Items")) {
+        } else if (strMenu.equals("Buy Items")) {
+            setFragment(new BuyItemsFragment());
+        } else if (strMenu.equals("My Bids")) {
         } else if (strMenu.equals("Contact us")) {
+            setFragment(new ContactUsFragment());
         } else if (strMenu.equals("Logout")) {
             startActivity(new Intent(getApplicationContext(),LoginUIActivity.class));
             finish();
