@@ -30,7 +30,7 @@ public class SlideMenuActivity extends MainActivity
     TextView text_email;
     String userType = "", str_name = "";
 
-    String[] userMenu = {"My Post", "My Profile", "Add Post", "Bidded Items", "Contact us", "Logout"};
+    String[] userMenu = {"My Post", "My Profile", "Add Posts", "Contact us", "Logout"};
     String[] recyclerMenu = {"Buy Items", "My Profile", "My Bids", "Contact us", "Logout"};
 
     @Override
@@ -83,6 +83,12 @@ public class SlideMenuActivity extends MainActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+        if (userType.equals("U")) {
+            setFragment(new AddPostFragment());
+        }
+        else if (userType.equals("R")) {
+            setFragment(new UserPostsFragment());
+        }
     }
 
     public void setFragment(Fragment fragment) {

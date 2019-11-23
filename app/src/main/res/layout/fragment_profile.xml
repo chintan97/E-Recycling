@@ -41,6 +41,7 @@
                     android:layout_marginTop="@dimen/_3sdp"
                     android:background="@drawable/edit_box_corner"
                     android:inputType="textPersonName"
+                    android:text="Chintan Patel"
                     android:fontFamily="@font/droid_serif"
                     android:textColor="@android:color/black"
                     android:textSize="15sp"/>
@@ -55,13 +56,13 @@
                     android:fontFamily="@font/droid_serif"
                     android:textColor="@android:color/black"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/edit_profile_email"
+                    android:text="chintan.patel@dal.ca"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:background="@drawable/edit_box_corner"
-                    android:inputType="textEmailAddress"
                     android:textColor="@android:color/black"
                     android:fontFamily="@font/droid_serif"
                     android:textSize="15sp"/>
@@ -81,6 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_32sdp"
                     android:layout_marginTop="@dimen/_3sdp"
+                    android:text="9024037230"
                     android:background="@drawable/edit_box_corner"
                     android:inputType="phone"
                     android:fontFamily="@font/droid_serif"

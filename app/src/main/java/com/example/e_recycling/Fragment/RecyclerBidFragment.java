@@ -19,9 +19,9 @@ public class RecyclerBidFragment extends FragmentMaster {
 
     View view;
     int images[] = {R.drawable.moto, R.drawable.iphone, R.drawable.samsung};
-    String descriptions[] = {"Moto G7", "Iphone", "Samsung"};
-    String bids[] = {"25$", "70$", "20$"};
-    String location[] = {"Halifax", "Halifax", "Halifax"};
+    String descriptions[] = {"Moto G7", "Iphone"};
+    String bids[] = {"25$", "70$"};
+    String location[] = {"Halifax", "Halifax"};
 
     RecyclerView recyclerView;
 
