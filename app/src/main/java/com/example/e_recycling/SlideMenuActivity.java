@@ -84,10 +84,10 @@ public class SlideMenuActivity extends MainActivity
 
         navigationView.setNavigationItemSelectedListener(this);
         if (userType.equals("U")) {
-            setFragment(new AddPostFragment());
+            setFragment(new UserPostsFragment());
         }
         else if (userType.equals("R")) {
-            setFragment(new UserPostsFragment());
+            setFragment(new BuyItemsFragment());
         }
     }
 

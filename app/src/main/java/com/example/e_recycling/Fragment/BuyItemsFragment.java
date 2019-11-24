@@ -1,13 +1,16 @@
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.e_recycling.AddBidActivity;
 import com.example.e_recycling.R;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,17 +61,18 @@ public class BuyItemsFragment extends FragmentMaster {
         recyclerView.setAdapter(new PostsAdapter(getContext()));
     }
 
-    private class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MainCategoryViewHolder> {
+    private class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MainCategoryViewHolder>{
         Context context;
 
         PostsAdapter(Context act) {
             this.context = act;
         }
 
-        public class MainCategoryViewHolder extends RecyclerView.ViewHolder {
+        public class MainCategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             TextView text_row_description, text_row_quantity, text_row_location,
             text_max_bids;
             ImageView image_row_prod_pic;
+            LinearLayout layout;
 
             MainCategoryViewHolder(View itemView) {
                 super(itemView);
@@ -77,6 +81,15 @@ public class BuyItemsFragment extends FragmentMaster {
                 text_row_location = itemView.findViewById(R.id.text_row_recycler_post_location);
                 text_max_bids = itemView.findViewById(R.id.text_row_recycler_post_max_bids);
                 image_row_prod_pic = itemView.findViewById(R.id.image_row_recycler_post_product_image);
+                layout = itemView.findViewById(R.id.layout_buy_items);
+                layout.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == layout.getId()) {
+                    startActivity(new Intent(getActivity(), AddBidActivity.class));
+                }
             }
         }
 

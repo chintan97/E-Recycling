@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.e_recycling.R;
 import com.example.e_recycling.SlideMenuActivity;
+import com.example.e_recycling.UserPostDetails;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,9 +68,10 @@ public class UserPostsFragment extends FragmentMaster {
             this.context = act;
         }
 
-        public class MainCategoryViewHolder extends RecyclerView.ViewHolder {
+        public class MainCategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             TextView text_row_description, text_row_quantity, text_row_location;
             ImageView image_row_prod_pic;
+            LinearLayout layout;
 
             MainCategoryViewHolder(View itemView) {
                 super(itemView);
@@ -76,6 +79,15 @@ public class UserPostsFragment extends FragmentMaster {
                 text_row_quantity = itemView.findViewById(R.id.text_row_user_post_quantity);
                 text_row_location = itemView.findViewById(R.id.text_row_user_post_location);
                 image_row_prod_pic = itemView.findViewById(R.id.image_row_user_post_product_image);
+                layout = itemView.findViewById(R.id.user_posts);
+                layout.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == layout.getId()) {
+                    startActivity(new Intent(getActivity(), UserPostDetails.class));
+                }
             }
         }
 
