@@ -23,7 +23,7 @@ public class BuyItemsFragment extends FragmentMaster {
     String descriptions[] = {"Moto G7", "Iphone", "Samsung"};
     String quantity[] = {"2", "1", "5"};
     String location[] = {"Halifax", "Halifax", "Halifax"};
-    String maxBids[] = {"4","5","3"};
+    String maxBids[] = {"50","70","100"};
 
     RecyclerView recyclerView;
 
@@ -106,7 +106,7 @@ public class BuyItemsFragment extends FragmentMaster {
             holder.text_row_description.setText("Desc : "+descriptions[i]);
             holder.text_row_quantity.setText("Quantity : "+quantity[i]);
             holder.text_row_location.setText("Location : "+location[i]);
-            holder.text_max_bids.setText("Maximum Bids : "+maxBids[i]);
+            holder.text_max_bids.setText("Maximum Bid amount : $"+maxBids[i]);
         }
 
         @Override
