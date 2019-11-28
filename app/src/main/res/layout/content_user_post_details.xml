@@ -78,7 +78,6 @@
                     android:minLines="3"
                     android:maxLines="4"
                     android:text="Iphone"
-                    android:background="@drawable/edit_box_corner"
                     android:layout_weight="65"/>
 
             </LinearLayout>
@@ -107,7 +106,6 @@
                     android:fontFamily="@font/droid_serif"
                     android:gravity="start"
                     android:text="1"
-                    android:background="@drawable/edit_box_corner"
                     android:layout_weight="65"/>
 
             </LinearLayout>
@@ -137,7 +135,6 @@
                     android:gravity="start"
                     android:singleLine="true"
                     android:text="Halifax"
-                    android:background="@drawable/edit_box_corner"
                     android:layout_weight="65"/>
 
             </LinearLayout>
@@ -204,7 +201,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="9024037230"
+                        android:text="902-403-7230"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/droid_serif"
@@ -256,7 +253,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$50"
+                        android:text="$30"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"
                         android:fontFamily="@font/droid_serif"

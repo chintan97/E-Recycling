@@ -13,6 +13,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,6 +72,16 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    // https://stackoverflow.com/a/54308582/8243992
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

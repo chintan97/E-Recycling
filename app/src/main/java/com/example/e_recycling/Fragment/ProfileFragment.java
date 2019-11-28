@@ -7,10 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.e_recycling.R;
@@ -36,6 +40,11 @@ public class ProfileFragment extends FragmentMaster {
     String folder_main = "E-Recycling";
     int imageHeight = 600;
     int imageWidth = 800;
+    EditText edit_phone;
+    private boolean isFormatting;
+    private boolean deletingHyphen;
+    private int hyphenStart;
+    private boolean deletingBackward;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -50,6 +59,67 @@ public class ProfileFragment extends FragmentMaster {
     @Override
     public void prepareViews(View view) {
         imageProfile = view.findViewById(R.id.image_profile_user);
+        edit_phone = view.findViewById(R.id.edit_profile_phone);
+
+        // https://stackoverflow.com/a/16976972/8243992
+        edit_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (isFormatting)
+                    return;
+
+                // Make sure user is deleting one char, without a selection
+                final int selStart = Selection.getSelectionStart(s);
+                final int selEnd = Selection.getSelectionEnd(s);
+                if (s.length() > 1 // Can delete another character
+                        && count == 1 // Deleting only one character
+                        && after == 0 // Deleting
+                        && s.charAt(start) == '-' // a hyphen
+                        && selStart == selEnd) { // no selection
+                    deletingHyphen = true;
+                    hyphenStart = start;
+                    // Check if the user is deleting forward or backward
+                    if (selStart == start + 1) {
+                        deletingBackward = true;
+                    } else {
+                        deletingBackward = false;
+                    }
+                } else {
+                    deletingHyphen = false;
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable text) {
+                if (isFormatting)
+                    return;
+
+                isFormatting = true;
+
+                // If deleting hyphen, also delete character before or after it
+                if (deletingHyphen && hyphenStart > 0) {
+                    if (deletingBackward) {
+                        if (hyphenStart - 1 < text.length()) {
+                            text.delete(hyphenStart - 1, hyphenStart);
+                        }
+                    } else if (hyphenStart < text.length()) {
+                        text.delete(hyphenStart, hyphenStart + 1);
+                    }
+                }
+                if (text.length() == 3 || text.length() == 7) {
+                    text.append('-');
+                    edit_phone.setText(text);
+                    edit_phone.setSelection(text.length());
+                }
+
+                isFormatting = false;
+            }
+        });
     }
 
     @Override

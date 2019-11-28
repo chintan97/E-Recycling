@@ -23,7 +23,7 @@ public class BuyItemsFragment extends FragmentMaster {
     String descriptions[] = {"Moto G7", "Iphone", "Samsung"};
     String quantity[] = {"2", "1", "5"};
     String location[] = {"Halifax", "Halifax", "Halifax"};
-    String maxBids[] = {"50","70","100"};
+    String maxBids[] = {"10","30","15"};
 
     RecyclerView recyclerView;
 

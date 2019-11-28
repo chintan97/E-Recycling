@@ -1,12 +1,15 @@
 package com.example.e_recycling;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -76,6 +79,16 @@ public class LoginUIActivity extends MainActivity {
         });
     }
 
+    // https://stackoverflow.com/a/54308582/8243992
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
     public void SubmitLogin()
     {
         str_email = edit_email.getText().toString();
@@ -83,24 +96,24 @@ public class LoginUIActivity extends MainActivity {
 
         if(str_email.isEmpty())
         {
-            Toast.makeText(this, "Please enter Email Address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter Email Address", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (!isValidEmail(str_email)) {
-            Toast.makeText(this, "Enter valid Email Address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter valid Email Address", Toast.LENGTH_LONG).show();
             return;
         }
 
         if(str_password.isEmpty())
         {
-            Toast.makeText(this, "Please enter Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter Password", Toast.LENGTH_LONG).show();
             return;
         }
 
         if(str_mode.isEmpty())
         {
-            Toast.makeText(this, "Please select Recycler or User", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select Recycler or User", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -113,10 +126,10 @@ public class LoginUIActivity extends MainActivity {
                 intent.putExtra("userType",str_mode);
                 startActivity(intent);
                 finish();
-                Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_LONG).show();
 
             } else {
-                Toast.makeText(getApplicationContext(), "Login error. Username or password not matched.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Login error. Username or password not matched.", Toast.LENGTH_LONG).show();
             }
         }
     }

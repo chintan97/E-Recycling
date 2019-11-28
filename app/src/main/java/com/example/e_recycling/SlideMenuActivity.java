@@ -1,13 +1,16 @@
 package com.example.e_recycling;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -44,7 +47,7 @@ public class SlideMenuActivity extends MainActivity
 
         toolbar = findViewById(R.id.toolbar_slide_menu);
         if (userType.equals("U")) {
-            toolbar.setTitle("Add Post");
+            toolbar.setTitle("My Posts");
         } else {
             toolbar.setTitle("Buy Items");
         }
@@ -52,6 +55,16 @@ public class SlideMenuActivity extends MainActivity
 
         prepareViews();
         initializeViews();
+    }
+
+    // https://stackoverflow.com/a/54308582/8243992
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     public void prepareViews() {

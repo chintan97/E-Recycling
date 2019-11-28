@@ -131,7 +131,7 @@
                     android:fontFamily="@font/droid_serif"
                     android:gravity="start"
                     android:inputType="text"
-                    android:hint="100 kg"
+                    android:hint="100 g / 1 piece"
                     android:background="@drawable/edit_box_corner"
                     android:layout_weight="65"/>
 
