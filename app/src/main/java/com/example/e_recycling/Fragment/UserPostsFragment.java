@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.e_recycling.R;
 import com.example.e_recycling.SlideMenuActivity;
 import com.example.e_recycling.UserPostDetails;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +27,7 @@ public class UserPostsFragment extends FragmentMaster {
     String descriptions[] = {"Moto G7", "Iphone", "Samsung"};
     String quantity[] = {"2", "1", "5"};
     String location[] = {"Halifax", "Halifax", "Halifax"};
+    FloatingActionButton redirect_new_post;
 
     RecyclerView recyclerView;
 
@@ -54,6 +58,15 @@ public class UserPostsFragment extends FragmentMaster {
         LinearLayoutManager gr = new LinearLayoutManager(getActivity());
         gr.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(gr);
+
+        redirect_new_post = view.findViewById(R.id.button_new_order);
+
+        redirect_new_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override

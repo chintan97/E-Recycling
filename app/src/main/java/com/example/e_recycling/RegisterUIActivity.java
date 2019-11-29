@@ -210,7 +210,7 @@ public class RegisterUIActivity extends MainActivity {
 
         if(str_mode.isEmpty())
         {
-            Toast.makeText(this, "Select Recycler or User", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Select Recycler or e-waste owner", Toast.LENGTH_LONG).show();
             return;
         }
 
