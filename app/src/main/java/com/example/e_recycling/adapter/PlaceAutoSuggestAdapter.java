@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 import androidx.annotation.NonNull;
 
+// https://github.com/hackstarsj/Android_Auto_Complete_Location/
 public class PlaceAutoSuggestAdapter extends ArrayAdapter implements Filterable {
 
     ArrayList<String> results;

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
+// https://github.com/hackstarsj/Android_Auto_Complete_Location/
 public class PlaceApi {
     public ArrayList<String> autoComplete(String input){
         ArrayList<String> arrayList = new ArrayList();
