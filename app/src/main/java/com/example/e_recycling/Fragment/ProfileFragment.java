@@ -1,5 +1,8 @@
 package com.example.e_recycling.Fragment;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ExifInterface;
@@ -14,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -26,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
 public class ProfileFragment extends FragmentMaster {
@@ -33,10 +38,6 @@ public class ProfileFragment extends FragmentMaster {
     View view;
     ImageView imageProfile;
     public static final int ATTACHMENT_CHOICE_CAMERA = 1;
-    private String imageFilePath = "";
-    Uri IMAGE_CAPTURE_URI;
-    Bitmap bmp;
-    SimpleDateFormat sdf;
     String folder_main = "E-Recycling";
     int imageHeight = 600;
     int imageWidth = 800;
@@ -45,6 +46,8 @@ public class ProfileFragment extends FragmentMaster {
     private boolean deletingHyphen;
     private int hyphenStart;
     private boolean deletingBackward;
+    Button add_picture;
+    Integer REQUEST_CAMERA = 3, RESULT_LOAD_IMAGE = 1;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -60,6 +63,14 @@ public class ProfileFragment extends FragmentMaster {
     public void prepareViews(View view) {
         imageProfile = view.findViewById(R.id.image_profile_user);
         edit_phone = view.findViewById(R.id.edit_profile_phone);
+        add_picture = view.findViewById(R.id.add_picture);
+
+        add_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
 
         // https://stackoverflow.com/a/16976972/8243992
         edit_phone.addTextChangedListener(new TextWatcher() {
@@ -124,12 +135,49 @@ public class ProfileFragment extends FragmentMaster {
 
     @Override
     public void initializeViews() {
-        imageProfile.setOnClickListener(new View.OnClickListener() {
+    }
+
+    // https://www.youtube.com/watch?v=i5UcFAdKe5M
+    public void selectImage(){
+        final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
+
+        Log.i("IMAGE", "selectImage");
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Add image");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openCameraIntent();
+            public void onClick(DialogInterface dialog, int which) {
+                if (items[which].equals("Camera")){
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, REQUEST_CAMERA);
+                }
+                else if (items[which].equals("Gallery")){
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, RESULT_LOAD_IMAGE);
+
+                }
+                else if (items[which].equals("Cancel")){
+                    dialog.dismiss();
+                }
             }
         });
+        builder.show();
+
+    }
+
+    // https://www.youtube.com/watch?v=8nDKwtTcOUg
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == Activity.RESULT_OK && data != null){
+            Uri selectedImage = data.getData();
+            imageProfile.setImageURI(selectedImage);
+        }
+        else if (requestCode == REQUEST_CAMERA && resultCode == Activity.RESULT_OK && data != null){
+            Bundle bundle = data.getExtras();
+            Bitmap bmp = (Bitmap) bundle.get("data");
+            imageProfile.setImageBitmap(bmp);
+        }
     }
 
     @Override
@@ -142,92 +190,5 @@ public class ProfileFragment extends FragmentMaster {
         initializeViews();
 
         return view;
-    }
-
-    private void openCameraIntent() {
-        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (pictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return;
-            }
-            Uri photoUri = FileProvider.getUriForFile(getActivity(), getActivity().getPackageName() + ".provider", photoFile);
-            pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-            startActivityForResult(pictureIntent, ATTACHMENT_CHOICE_CAMERA);
-        }
-    }
-
-    private File createImageFile() throws IOException {
-
-        File f = new File(Environment.getExternalStorageDirectory(), folder_main);
-        if (!f.exists()) {
-            f.mkdirs();
-        }
-
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        String imageFileName = "IMG_" + timeStamp + "_";
-        File storageDir = new File(Environment.getExternalStorageDirectory() + "/" + folder_main);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-        imageFilePath = image.getAbsolutePath();
-        Log.d("Image", imageFilePath);
-        return image;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode,
-                                 final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == getActivity().RESULT_OK) {
-            if (requestCode == ATTACHMENT_CHOICE_CAMERA) {
-                setImg();
-            } else {
-                imageFilePath = "";
-            }
-        } else {
-            File imgFile = new File(imageFilePath);
-            if (imgFile.exists()) {
-                imgFile.delete();
-            }
-            Log.d("cancelled", imageFilePath);
-        }
-    }
-
-    public void setImg() {
-        bmp = BitmapProcess.decodeSampledBitmapFromPah(imageFilePath, imageHeight,
-                imageWidth);
-
-        ExifInterface ei;
-
-        try {
-            ei = new ExifInterface(imageFilePath);
-
-            int orientation = ei.getAttributeInt(
-                    ExifInterface.TAG_ORIENTATION,
-                    ExifInterface.ORIENTATION_NORMAL);
-
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    bmp = BitmapProcess.RotateBitmap(bmp, 90);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    bmp = BitmapProcess.RotateBitmap(bmp, 180);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    bmp = BitmapProcess.RotateBitmap(bmp, 270);
-                    break;
-            }
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-
-        if (bmp != null) {
-            imageProfile.setImageBitmap(bmp);
-        } else {
-        }
     }
 }

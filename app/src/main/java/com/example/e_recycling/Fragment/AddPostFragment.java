@@ -90,6 +90,7 @@ public class AddPostFragment extends FragmentMaster {
 
     }
 
+    // https://www.youtube.com/watch?v=i5UcFAdKe5M
     public void selectImage(){
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
 
