@@ -2,13 +2,16 @@ package com.example.e_recycling.Fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Selection;
@@ -22,6 +25,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.e_recycling.R;
+import com.example.e_recycling.SlideMenuActivity;
+import com.example.e_recycling.UserPostDetails;
 import com.example.e_recycling.utils.BitmapProcess;
 
 import java.io.File;
@@ -46,8 +51,10 @@ public class ProfileFragment extends FragmentMaster {
     private boolean deletingHyphen;
     private int hyphenStart;
     private boolean deletingBackward;
-    Button add_picture;
+    Button add_picture, button_update_profile;
     Integer REQUEST_CAMERA = 3, RESULT_LOAD_IMAGE = 1;
+    SharedPreferences sharedPreferences;
+    private String userEmail, userMode;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -56,7 +63,10 @@ public class ProfileFragment extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.i("TEST", "TEST THIS!");
+        sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        userEmail = sharedPreferences.getString("email", "NOT_FOUND");
+        userMode = sharedPreferences.getString("userType", "NOT_FOUND");
     }
 
     @Override
@@ -64,11 +74,22 @@ public class ProfileFragment extends FragmentMaster {
         imageProfile = view.findViewById(R.id.image_profile_user);
         edit_phone = view.findViewById(R.id.edit_profile_phone);
         add_picture = view.findViewById(R.id.add_picture);
+        button_update_profile = view.findViewById(R.id.buttonRegister);
 
         add_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
+            }
+        });
+
+        button_update_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SlideMenuActivity.class);
+                intent.putExtra("email",userEmail);
+                intent.putExtra("userType",userMode);
+                startActivity(intent);
             }
         });
 

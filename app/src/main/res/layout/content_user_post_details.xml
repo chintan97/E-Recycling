@@ -288,6 +288,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/delete_post_button"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_34sdp"
                 android:text="Delete"

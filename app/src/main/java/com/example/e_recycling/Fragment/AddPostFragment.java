@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.e_recycling.R;
+import com.example.e_recycling.SlideMenuActivity;
 import com.example.e_recycling.adapter.PlaceAutoSuggestAdapter;
 
 import androidx.annotation.Nullable;
@@ -35,6 +37,9 @@ public class AddPostFragment extends FragmentMaster {
     private static final int RESULT_LOAD_IMAGE_1 = 1, RESULT_LOAD_IMAGE_2 = 2;
     Integer REQUEST_CAMERA = 3, SELECT_FILE = 0;
     int button_chose = 0;
+    Button upload_button;
+    String userEmail, userMode;
+    SharedPreferences sharedPreferences;
 
     public AddPostFragment() {
         // Required empty public constructor
@@ -43,6 +48,9 @@ public class AddPostFragment extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        userEmail = sharedPreferences.getString("email", "NOT_FOUND");
+        userMode = sharedPreferences.getString("userType", "NOT_FOUND");
     }
 
     @Override
@@ -65,8 +73,19 @@ public class AddPostFragment extends FragmentMaster {
         image_add_post_2 = view.findViewById(R.id.image_add_post_2);
         add_picture_1 = view.findViewById(R.id.add_picture_1);
         add_picture_2 = view.findViewById(R.id.add_picture_2);
+        upload_button = view.findViewById(R.id.upload_button);
 
         edit_location.setAdapter(new PlaceAutoSuggestAdapter(getContext(),android.R.layout.simple_list_item_1));
+
+        upload_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SlideMenuActivity.class);
+                intent.putExtra("email",userEmail);
+                intent.putExtra("userType",userMode);
+                startActivity(intent);
+            }
+        });
 
         add_picture_1.setOnClickListener(new View.OnClickListener() {
             @Override

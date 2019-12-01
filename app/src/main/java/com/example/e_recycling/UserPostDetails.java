@@ -1,15 +1,23 @@
 package com.example.e_recycling;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class UserPostDetails extends AppCompatActivity {
+    Button delete_post_button;
+    SharedPreferences sharedPreferences;
+    String userEmail, userMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +25,21 @@ public class UserPostDetails extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        userEmail = sharedPreferences.getString("email", "NOT_FOUND");
+        userMode = sharedPreferences.getString("userType", "NOT_FOUND");
+
+        delete_post_button = findViewById(R.id.delete_post_button);
+        delete_post_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SlideMenuActivity.class);
+                intent.putExtra("email",userEmail);
+                intent.putExtra("userType",userMode);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

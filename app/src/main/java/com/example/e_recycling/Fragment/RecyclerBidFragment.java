@@ -1,6 +1,8 @@
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.e_recycling.R;
+import com.example.e_recycling.SlideMenuActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +25,8 @@ public class RecyclerBidFragment extends FragmentMaster {
     String descriptions[] = {"Moto G7", "Iphone"};
     String bids[] = {"$10", "$30"};
     String location[] = {"Halifax", "Halifax"};
+    SharedPreferences sharedPreferences;
+    String userEmail, userMode;
 
     RecyclerView recyclerView;
 
@@ -32,6 +37,9 @@ public class RecyclerBidFragment extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        userEmail = sharedPreferences.getString("email", "NOT_FOUND");
+        userMode = sharedPreferences.getString("userType", "NOT_FOUND");
     }
 
     @Override

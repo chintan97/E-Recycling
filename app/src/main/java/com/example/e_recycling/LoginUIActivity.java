@@ -2,10 +2,12 @@ package com.example.e_recycling;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,6 +29,7 @@ public class LoginUIActivity extends MainActivity {
     private SQLiteDatabase db;
     private SQLiteOpenHelper openHelper;
     private Cursor cursor;
+    SharedPreferences sharedPreferences;
 
     String str_email = "", str_password = "", str_mode = ""; // mode --> U = user, R = recycler
 
@@ -120,6 +123,10 @@ public class LoginUIActivity extends MainActivity {
         cursor = db.rawQuery("SELECT *FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.COL_4 + "=? AND " + DatabaseHelper.COL_5 + "=?", new String[]{str_email, str_password});
         if (cursor != null) {
             if (cursor.getCount() > 0) {
+
+                sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+                sharedPreferences.edit().putString("email", str_email).apply();
+                sharedPreferences.edit().putString("userType", str_mode).apply();
 
                 Intent intent = new Intent(getApplicationContext(), SlideMenuActivity.class);
                 intent.putExtra("email",str_email);

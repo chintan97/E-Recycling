@@ -208,6 +208,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/recycler_add_bid_button"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_34sdp"
                 android:text="Add bid"
