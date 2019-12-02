@@ -1,3 +1,4 @@
+// A fragment to handle user profile
 package com.example.e_recycling.Fragment;
 
 import android.app.Activity;
@@ -63,7 +64,8 @@ public class ProfileFragment extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("TEST", "TEST THIS!");
+
+        // Fetch data from SharedPreferences
         sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", "NOT_FOUND");
         userMode = sharedPreferences.getString("userType", "NOT_FOUND");
@@ -83,6 +85,7 @@ public class ProfileFragment extends FragmentMaster {
             }
         });
 
+        // OnClick button for update event
         button_update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +96,10 @@ public class ProfileFragment extends FragmentMaster {
             }
         });
 
+        // The below function will help improving UX.
+        // For instance, when a user starts typing mobile number and enters three digits,
+        // the below function will automatically add hyphen (-) after the third digit.
+        // Similarly, a hyphen (-) will be added after the sixth digit.
         // https://stackoverflow.com/a/16976972/8243992
         edit_phone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -158,6 +165,9 @@ public class ProfileFragment extends FragmentMaster {
     public void initializeViews() {
     }
 
+    // The below function will help uploading an image.
+    // The user will have an option to upload an image either by capturing from camera
+    // or selecting from gallery.
     // https://www.youtube.com/watch?v=i5UcFAdKe5M
     public void selectImage(){
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
@@ -186,6 +196,7 @@ public class ProfileFragment extends FragmentMaster {
 
     }
 
+    // To handle click requests
     // https://www.youtube.com/watch?v=8nDKwtTcOUg
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

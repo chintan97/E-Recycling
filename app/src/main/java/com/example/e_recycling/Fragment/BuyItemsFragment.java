@@ -1,3 +1,4 @@
+// A fragment to show items which are uploaded by e-waste owners
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;
@@ -20,6 +21,8 @@ public class BuyItemsFragment extends FragmentMaster {
 
     View view;
     int images[] = {R.drawable.moto, R.drawable.iphone, R.drawable.samsung};
+
+    // Sample data to render
     String descriptions[] = {"Moto G7", "Iphone", "Samsung"};
     String quantity[] = {"2", "1", "5"};
     String location[] = {"Halifax", "Halifax", "Halifax"};
@@ -76,6 +79,8 @@ public class BuyItemsFragment extends FragmentMaster {
 
             MainCategoryViewHolder(View itemView) {
                 super(itemView);
+
+                // Initialize views
                 text_row_description = itemView.findViewById(R.id.text_row_recycler_post_description);
                 text_row_quantity = itemView.findViewById(R.id.text_row_recycler_post_quantity);
                 text_row_location = itemView.findViewById(R.id.text_row_recycler_post_location);
@@ -102,6 +107,8 @@ public class BuyItemsFragment extends FragmentMaster {
         }
 
         public void onBindViewHolder(MainCategoryViewHolder holder, int i) {
+
+            // Assign values dynamically
             holder.image_row_prod_pic.setImageResource(images[i]);
             holder.text_row_description.setText("Desc : "+descriptions[i]);
             holder.text_row_quantity.setText("Quantity : "+quantity[i]);

@@ -1,3 +1,4 @@
+// An activity for Login UI
 package com.example.e_recycling;
 
 import android.content.Context;
@@ -82,6 +83,8 @@ public class LoginUIActivity extends MainActivity {
         });
     }
 
+    // The below function is implemented to add an event which will disappear the keyboard if
+    // the user clicks anywhere except edit views
     // https://stackoverflow.com/a/54308582/8243992
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -97,6 +100,7 @@ public class LoginUIActivity extends MainActivity {
         str_email = edit_email.getText().toString();
         str_password = edit_password.getText().toString();
 
+        // Validations before submitting the data
         if(str_email.isEmpty())
         {
             Toast.makeText(this, "Please enter Email Address", Toast.LENGTH_LONG).show();
@@ -124,6 +128,7 @@ public class LoginUIActivity extends MainActivity {
         if (cursor != null) {
             if (cursor.getCount() > 0) {
 
+                // Insert data into SharePreferences
                 sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
                 sharedPreferences.edit().putString("email", str_email).apply();
                 sharedPreferences.edit().putString("userType", str_mode).apply();

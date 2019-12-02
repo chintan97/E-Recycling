@@ -33,16 +33,19 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private ImageView logoImage;
 
+    // To check if the network is available
     protected boolean hasNetwork() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
 
+    // To check if the email is valid
     public static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    // To check if the phone is valid
     public static boolean isValidPhone(String phone) {
         return !TextUtils.isEmpty(phone) && Patterns.PHONE.matcher(phone).matches();
     }
@@ -60,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Intent redirect;
             switch (item.getItemId()) {
-                case R.id.navigation_login:
+                case R.id.navigation_login:   // Redirect to login page
                     redirect = new Intent(getApplicationContext(), LoginUIActivity.class);
                     startActivity(redirect);
                     mTextMessage.setText("Login");
                     return true;
-                case R.id.navigation_admin:
+                case R.id.navigation_admin:   // Redirect to admin page
                     mTextMessage.setText("Admin");
                     return true;
             }
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    // The below function is implemented to add an event which will disappear the keyboard if
+    // the user clicks anywhere except edit views
     // https://stackoverflow.com/a/54308582/8243992
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

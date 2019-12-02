@@ -1,3 +1,4 @@
+// A fragment for add post view
 package com.example.e_recycling.Fragment;
 
 import android.app.Activity;
@@ -48,6 +49,8 @@ public class AddPostFragment extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Fetch data from SharedPreferences
         sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", "NOT_FOUND");
         userMode = sharedPreferences.getString("userType", "NOT_FOUND");
@@ -109,6 +112,9 @@ public class AddPostFragment extends FragmentMaster {
 
     }
 
+    // The below function will help uploading an image.
+    // The user will have an option to upload an image either by capturing from camera
+    // or selecting from gallery.
     // https://www.youtube.com/watch?v=i5UcFAdKe5M
     public void selectImage(){
         final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
@@ -142,6 +148,7 @@ public class AddPostFragment extends FragmentMaster {
 
     }
 
+    // To handle click requests
     // https://www.youtube.com/watch?v=8nDKwtTcOUg
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

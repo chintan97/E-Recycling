@@ -1,3 +1,4 @@
+// An activity to show user post
 package com.example.e_recycling;
 
 import android.content.Context;
@@ -26,10 +27,12 @@ public class UserPostDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Fetch user data from SharedPreferences
         sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", "NOT_FOUND");
         userMode = sharedPreferences.getString("userType", "NOT_FOUND");
 
+        // Redirect to Slide Meny activity after deleting the post
         delete_post_button = findViewById(R.id.delete_post_button);
         delete_post_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +66,8 @@ public class UserPostDetails extends AppCompatActivity {
         finish();
     }
 
+    // The below function is implemented to add an event which will disappear the keyboard if
+    // the user clicks anywhere except edit views
     // https://stackoverflow.com/a/54308582/8243992
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

@@ -1,3 +1,4 @@
+// A fragment for recycler bid
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;
@@ -22,6 +23,8 @@ public class RecyclerBidFragment extends FragmentMaster {
 
     View view;
     int images[] = {R.drawable.moto, R.drawable.iphone, R.drawable.samsung};
+
+    // String arrays for sample renders
     String descriptions[] = {"Moto G7", "Iphone"};
     String bids[] = {"$10", "$30"};
     String location[] = {"Halifax", "Halifax"};
@@ -37,6 +40,8 @@ public class RecyclerBidFragment extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Fetch data from SharedPreferences
         sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", "NOT_FOUND");
         userMode = sharedPreferences.getString("userType", "NOT_FOUND");
@@ -82,6 +87,8 @@ public class RecyclerBidFragment extends FragmentMaster {
 
             MainCategoryViewHolder(View itemView) {
                 super(itemView);
+
+                // Initialize views
                 text_row_description = itemView.findViewById(R.id.text_row_recycler_bid_description);
                 text_row_location = itemView.findViewById(R.id.text_row_recycler_bid_location);
                 edit_bid_amount = itemView.findViewById(R.id.edit_row_recycler_bid_amount);

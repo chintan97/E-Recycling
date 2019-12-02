@@ -1,3 +1,4 @@
+// An activity for adding the bids
 package com.example.e_recycling;
 
 import android.app.Activity;
@@ -30,13 +31,17 @@ public class AddBidActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Fetch the data from Shared Preferences
         sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", "NOT_FOUND");
         userMode = sharedPreferences.getString("userType", "NOT_FOUND");
 
+        // Assign views
         recycler_bid_amount = findViewById(R.id.recycler_bid_amount);
         recycler_location = findViewById(R.id.recycler_location);
         recycler_add_bid_button = findViewById(R.id.recycler_add_bid_button);
+
+        // OnClickListener to redirect to SlideMenuActivity once the recycler adds bid
         recycler_add_bid_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +53,8 @@ public class AddBidActivity extends AppCompatActivity {
         });
     }
 
+    // The below function is implemented to add an event which will disappear the keyboard if
+    // the user clicks anywhere except edit views
     // https://stackoverflow.com/a/54308582/8243992
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

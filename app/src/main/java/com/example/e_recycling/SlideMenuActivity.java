@@ -1,3 +1,4 @@
+// An activity to add slide menu once the user logs in
 package com.example.e_recycling;
 
 import android.content.Context;
@@ -33,6 +34,7 @@ public class SlideMenuActivity extends MainActivity
     TextView text_email;
     String userType = "", str_name = "";
 
+    // String arrays to add options in slide menu
     String[] userMenu = {"My Posts", "My Profile", "Add Post", "Contact us", "Logout"};
     String[] recyclerMenu = {"Buy Items", "My Profile", "My Bids", "Contact us", "Logout"};
 
@@ -41,6 +43,7 @@ public class SlideMenuActivity extends MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide_menu);
 
+        // Fetch user email and type passed from intent
         Intent intent = getIntent();
         str_name = intent.getStringExtra("email");
         userType = intent.getStringExtra("userType");
@@ -57,6 +60,8 @@ public class SlideMenuActivity extends MainActivity
         initializeViews();
     }
 
+    // The below function is implemented to add an event which will disappear the keyboard if
+    // the user clicks anywhere except edit views
     // https://stackoverflow.com/a/54308582/8243992
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -79,6 +84,8 @@ public class SlideMenuActivity extends MainActivity
         text_email.setText(str_name);
 
         Menu menu = navigationView.getMenu();
+
+        // Add options according to user type
         if (userType.equals("R")) {
             for (int i = 0; i < recyclerMenu.length; i++) {
                 menu.add(recyclerMenu[i]);
@@ -104,6 +111,7 @@ public class SlideMenuActivity extends MainActivity
         }
     }
 
+    // A function to switch fragments
     public void setFragment(Fragment fragment) {
         if (fragment != null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -132,6 +140,7 @@ public class SlideMenuActivity extends MainActivity
 
         Log.d("Menu", strMenu);
 
+        // Switch fragments as per the user choice
         if (strMenu.equals("My Posts")) {
             setFragment(new UserPostsFragment());
         } else if (strMenu.equals("My Profile")) {

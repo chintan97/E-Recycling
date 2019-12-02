@@ -1,3 +1,4 @@
+// A fragment to show bidded items to the recycler
 package com.example.e_recycling.Fragment;
 
 import android.os.Bundle;

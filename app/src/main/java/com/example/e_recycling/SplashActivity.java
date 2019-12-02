@@ -1,3 +1,4 @@
+// A landing page activity
 package com.example.e_recycling;
 
 import android.content.Intent;
@@ -19,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
+                // Login page will be the landing page
                 Intent i = new Intent(getApplicationContext(), LoginUIActivity.class);
                 startActivity(i);
                 finish();

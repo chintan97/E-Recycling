@@ -1,3 +1,4 @@
+// An activity for register UI
 package com.example.e_recycling;
 
 import android.content.ContentValues;
@@ -52,6 +53,7 @@ public class RegisterUIActivity extends MainActivity {
 
     public void prepareViews() {
 
+        // Assign views
         edit_name = findViewById(R.id.edit_name);
         edit_email = findViewById(R.id.edit_email);
         edit_phone = findViewById(R.id.edit_phone);
@@ -62,6 +64,10 @@ public class RegisterUIActivity extends MainActivity {
 
         button_register = findViewById(R.id.button_register);
 
+        // The below function will help improving UX.
+        // For instance, when a user starts typing mobile number and enters three digits,
+        // the below function will automatically add hyphen (-) after the third digit.
+        // Similarly, a hyphen (-) will be added after the sixth digit.
         // https://stackoverflow.com/a/16976972/8243992
         edit_phone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -123,6 +129,8 @@ public class RegisterUIActivity extends MainActivity {
         });
     }
 
+    // The below function is implemented to add an event which will disappear the keyboard if
+    // the user clicks anywhere except edit views
     // https://stackoverflow.com/a/54308582/8243992
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -156,6 +164,8 @@ public class RegisterUIActivity extends MainActivity {
     }
 
     public void SubmitRegistration() {
+
+        // Fetch user entered data
         db = openHelper.getWritableDatabase();
         str_name = edit_name.getText().toString();
         str_email = edit_email.getText().toString();
@@ -163,6 +173,7 @@ public class RegisterUIActivity extends MainActivity {
         str_password = edit_password.getText().toString();
         str_confirm_password = edit_confirm_password.getText().toString();
 
+        // Some validations
         if (str_name.isEmpty()) {
             Toast.makeText(this, "Enter Name", Toast.LENGTH_LONG).show();
             return;
@@ -218,7 +229,7 @@ public class RegisterUIActivity extends MainActivity {
             cursor = db.rawQuery("SELECT *FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.COL_4 + "=?", new String[]{str_email});
             if (cursor != null) {
                 if (cursor.getCount() > 0) {
-                    Toast.makeText(getApplicationContext(), "Use is already registered,Please Login.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "User is already registered,Please Login.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), LoginUIActivity.class);
                     startActivity(intent);
                     return;
@@ -243,6 +254,7 @@ public class RegisterUIActivity extends MainActivity {
         long id = db.insert(DatabaseHelper.TABLE_NAME,null,contentValues);
     }
 
+    // Password validation function
     public boolean isValidPassword(final String password) {
 
         Pattern pattern;
