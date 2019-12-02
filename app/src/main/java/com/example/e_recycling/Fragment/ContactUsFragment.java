@@ -1,3 +1,4 @@
+// A fragment for contact us page
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;

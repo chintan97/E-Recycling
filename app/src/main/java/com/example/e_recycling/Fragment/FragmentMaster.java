@@ -1,3 +1,4 @@
+// A fragment for landing page
 package com.example.e_recycling.Fragment;
 
 import android.app.Activity;

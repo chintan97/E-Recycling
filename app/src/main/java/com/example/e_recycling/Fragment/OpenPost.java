@@ -1,3 +1,4 @@
+// A fragment for showing opened post
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;
@@ -25,6 +26,8 @@ public class OpenPost extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Fetch data from SharedPreferences
         sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("email", "NOT_FOUND");
         userMode = sharedPreferences.getString("userType", "NOT_FOUND");
@@ -33,6 +36,8 @@ public class OpenPost extends FragmentMaster {
     @Override
     public void prepareViews(View view) {
         delete_post_button = view.findViewById(R.id.delete_post_button);
+
+        // OnClick button for delete event
         delete_post_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

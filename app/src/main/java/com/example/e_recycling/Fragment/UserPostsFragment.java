@@ -1,7 +1,9 @@
+// A fragment to show user posts
 package com.example.e_recycling.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +26,14 @@ public class UserPostsFragment extends FragmentMaster {
 
     View view;
     int images[] = {R.drawable.moto, R.drawable.iphone, R.drawable.samsung};
+
+    // String arrays for sample renders
     String descriptions[] = {"Moto G7", "Iphone", "Samsung"};
     String quantity[] = {"2", "1", "5"};
     String location[] = {"Halifax", "Halifax", "Halifax"};
     FloatingActionButton redirect_new_post;
+    String userEmail, userMode;
+    SharedPreferences sharedPreferences;
 
     RecyclerView recyclerView;
 
@@ -38,6 +44,11 @@ public class UserPostsFragment extends FragmentMaster {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Fetch data from SharedPreferences
+        sharedPreferences = getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        userEmail = sharedPreferences.getString("email", "NOT_FOUND");
+        userMode = sharedPreferences.getString("userType", "NOT_FOUND");
     }
 
     @Override
@@ -64,7 +75,11 @@ public class UserPostsFragment extends FragmentMaster {
         redirect_new_post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), SlideMenuActivity.class);
+                intent.putExtra("email",userEmail);
+                intent.putExtra("userType",userMode);
+                intent.putExtra("redirectedFrom", "UserPostsFragment");
+                startActivity(intent);
             }
         });
     }
@@ -88,6 +103,8 @@ public class UserPostsFragment extends FragmentMaster {
 
             MainCategoryViewHolder(View itemView) {
                 super(itemView);
+
+                // Initialize views
                 text_row_description = itemView.findViewById(R.id.text_row_user_post_description);
                 text_row_quantity = itemView.findViewById(R.id.text_row_user_post_quantity);
                 text_row_location = itemView.findViewById(R.id.text_row_user_post_location);
@@ -113,6 +130,8 @@ public class UserPostsFragment extends FragmentMaster {
         }
 
         public void onBindViewHolder(MainCategoryViewHolder holder, int i) {
+
+            // Render data dynamically
             holder.image_row_prod_pic.setImageResource(images[i]);
             holder.text_row_description.setText("Desc : "+descriptions[i]);
             holder.text_row_quantity.setText("Quantity : "+quantity[i]);

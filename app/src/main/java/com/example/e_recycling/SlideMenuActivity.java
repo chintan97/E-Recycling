@@ -33,6 +33,7 @@ public class SlideMenuActivity extends MainActivity
     Toolbar toolbar;
     TextView text_email;
     String userType = "", str_name = "";
+    int redirectNewPostFlag = 0;
 
     // String arrays to add options in slide menu
     String[] userMenu = {"My Posts", "My Profile", "Add Post", "Contact us", "Logout"};
@@ -58,6 +59,9 @@ public class SlideMenuActivity extends MainActivity
 
         prepareViews();
         initializeViews();
+        if (intent.hasExtra("redirectedFrom") && intent.getStringExtra("redirectedFrom").equals("UserPostsFragment")){
+            setFragment(new AddPostFragment());
+        }
     }
 
     // The below function is implemented to add an event which will disappear the keyboard if
