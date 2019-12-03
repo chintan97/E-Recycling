@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="@dimen/_10sdp"
+    tools:context=".Fragment.AddPostFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/image_add_post_1"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:src="@drawable/iphone"
+                        android:scaleType="fitXY"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Image 1"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/droid_serif"
+                        android:textStyle="bold"
+                        android:layout_below="@id/image_add_post_1"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_24sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Product Description:"
+                    android:textSize="16sp"
+                    android:layout_weight="35"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:gravity="start"
+                    android:minLines="3"
+                    android:maxLines="4"
+                    android:text="Iphone"
+                    android:layout_weight="65"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_16sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity:"
+                    android:textSize="16sp"
+                    android:layout_weight="35"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:gravity="start"
+                    android:text="1"
+                    android:layout_weight="65"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_16sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Item Location:"
+                    android:textSize="16sp"
+                    android:layout_weight="35"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:gravity="start"
+                    android:text="Halifax"
+                    android:singleLine="true"
+                    android:hint=""
+                    android:layout_weight="65"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_16sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Owner contact:"
+                    android:textSize="16sp"
+                    android:layout_weight="35"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:gravity="start"
+                    android:text="902-403-7230"
+                    android:singleLine="true"
+                    android:hint=""
+                    android:layout_weight="65"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_16sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Owner email:"
+                    android:textSize="16sp"
+                    android:layout_weight="35"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:gravity="start"
+                    android:text="chintan.patel@dal.ca"
+                    android:singleLine="true"
+                    android:hint=""
+                    android:layout_weight="65"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_16sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bid amount:"
+                    android:textSize="16sp"
+                    android:layout_weight="35"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/recycler_bid_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:inputType="number"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:hint="Add bid amount"
+                    android:background="@drawable/edit_box_corner"
+                    android:layout_weight="65"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_16sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Your location:"
+                    android:textSize="16sp"
+                    android:layout_weight="35"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/recycler_location"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/droid_serif"
+                    android:inputType="text"
+                    android:gravity="start"
+                    android:singleLine="true"
+                    android:hint="Add your location"
+                    android:background="@drawable/edit_box_corner"
+                    android:layout_weight="65"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/recycler_add_bid_button"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_34sdp"
+                android:text="Add bid"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/droid_serif"
+                android:textColor="@android:color/white"
+                android:background="@drawable/button_selector"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
